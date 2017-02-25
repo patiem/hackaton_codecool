@@ -11,3 +11,7 @@ h1{
     font-size:36px;
 }
 
+.add_question {
+    display: flex;
+    flex-direction: row;
+}
