@@ -26,6 +26,20 @@ class Quiz:
         sql.query(query_2, params)
         return new_quiz
 
+
+    @classmethod
+    def get_quiz_list(cls):
+        query = "SELECT * FROM QUIZ"
+        q_list = sql.query(query)
+        list_to_send = []
+        for item in q_list:
+            quiz_id = item['id']
+            title = item['title']
+            list_to_send.append([quiz_id, title])
+            cls(title, quiz_id)
+        return list_to_send
+
+
     def add_question_to_quiz(self):
         pass
 
@@ -33,4 +47,5 @@ class Quiz:
         return '{}-{}'.format(self.title, self.quiz_id)
 
 
-"""print(Quiz.add_quiz('dupa'))"""
+"""print(Quiz.add_quiz('dupa'))
+Quiz.get_quiz_list()"""

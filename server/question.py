@@ -42,11 +42,16 @@ class Question:
             return True
         return False
 
-
-
-
-
-
+    @staticmethod
+    def get_questions_by_id(quiz_id):
+        query = "SELECT * FROM QUESTIONS WHERE quiz_id=(?)"
+        ans_list = sql.query(query, [quiz_id])
+        list_to_push =[]
+        for ans in ans_list:
+            list_to_push.append([ans['id'], ans['img'], ans['question'], ans['a_one'], ans['a_two'], ans['a_three'],
+                                 ans['a_good']])
+        print(list_to_push)
+        return list_to_push
 
     def __str__(self):
         return '{}-{}-{}'.format(self.question_id, self.question, self.good)
@@ -58,3 +63,4 @@ a_three = 'Pikachu'
 good = 'Pikachu'
 img = "http://cartoonbros.com/wp-content/uploads/2016/08/pikachu-6.png"
 print(Question.add_question(3, question, a_one, a_two, a_three, good, img))"""
+Question.get_questions_by_id(1)
