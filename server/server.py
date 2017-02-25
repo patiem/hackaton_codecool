@@ -88,16 +88,11 @@ class AddQuiz(web.RequestHandler):
         self.render("templates/add_quiz.html", amount=self.questionAmount)
 
     def post(self):
-
-        question_text = self.get_arguments('question', '')
-        print(question_text)
-
-        """for data in range(self.questionAmount):
-            question_text = self.get_argument('question_text', '')
-            url_img = self.get_argument('url_img', '')
-            a_1 = self.get_argument("a_1", "")
-            a_2 = self.get_argument("a_2", "")
-        print(question_text, url_img, a_1, a_2)"""
+        question_text = self.get_argument('question_text', '')
+        url_img = self.get_argument('url_img', '')
+        a_1 = self.get_argument("a_1", "")
+        a_2 = self.get_argument("a_2", "")
+        print(question_text, url_img, a_1, a_2)
 
 
 app = web.Application([

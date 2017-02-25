@@ -7,8 +7,9 @@
             <input type="text" name="title" id="title">
         </div></form>
     <p></p>
+
     {% for i in range(amount) %}
-    <form class="add_question" name="question-{{i}}" action="#" method="post">
+    <form class="add_question" name="question-{{i}}" action="" method="post">
         <div class="form-block">
             <label for="question_text">Question {{i}}:</label>
             <input type="text" name="question_text" id="question_text">
