@@ -78,12 +78,24 @@ class ShowPlayers(web.RequestHandler):
        self.render("templates/players.html",players=players)
 
 
+class AddQuiz(web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
+
+    def get(self):
+
+        # create first user and append to a user list
+       self.render("templates/add_quiz.html")
+
+
 app = web.Application([
     (r'/', IndexHandler),
     (r'/ws', SocketHandler),
     (r'/json/players', GetPlayers),
     (r'/players', ShowPlayers),
     (r'/static/(.*)', web.StaticFileHandler, {'path': 'static/'}),
+    (r'/add-quiz', AddQuiz),
 ])
 
 

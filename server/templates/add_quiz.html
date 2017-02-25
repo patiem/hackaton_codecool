@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Players</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+<h1>Add Quiz</h1>
+<section class="container">
+	<form class="se" name="add_assignment">
+        <div class="form-block">
+            <label for="title">Quiz title:</label>
+            <input type="text" name="title" id="title">
+        </div></form>
+    <form class="edit_user" name="add_assignment">
+        <div class="form-block">
+            <label class="date_input" for="start_date">Start date:</label>
+            <input type="date" id="start_date" name="start_date" min="2016-10-01" max="2020-08-14" value="2017-02-23">
+        </div>
+        <div class="form-block">
+            <label class="date_input" for="end_date">End date:</label>
+            <input type="date" id="end_date" name="end_date" min="2016-10-01" max="2020-08-14" value="2017-02-23">
+        </div>
+        <div class="form-block">
+            <label for="group">Group:</label>
+            <input type="text" name="group" id="group" value="No">
+        </div>
+        <div class="form-block">
+            <label for="points">Points:</label>
+            <input type="text" name="points" id="points" placeholder="0">
+        </div>
+        <div class="load_file">
+            <label for="file">Upload file with assignment:</label>
+            <input type="file" name="file" id="file">
+        </div>
+    </form>
+</section>
+
+    
+
+</body>
+</html>
