@@ -37,6 +37,17 @@ class Question:
         sql.query(query_2, params)
         return new_question
 
+    def if_answer_correct(self, user_choice):
+        if user_choice == self.good:
+            return True
+        return False
+
+
+
+
+
+
+
     def __str__(self):
         return '{}-{}-{}'.format(self.question_id, self.question, self.good)
 
