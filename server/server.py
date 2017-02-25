@@ -8,7 +8,7 @@ player2 = Player('Pati','http://192.170.100.15')
 
 print(player2)
 cl = []
-
+playersSocket = []
 p1 = {
   "userName": "piotrek",
   "websocket": "http:192.170.122"
@@ -35,7 +35,7 @@ class SocketHandler(websocket.WebSocketHandler):
 
     def on_message(self, message):
         print("get message from " + self.request.remote_ip + ": " + message)
-        players.append(message)
+        playersSocket.append(message)
 
     def check_origin(self, origin):
         return True
@@ -53,13 +53,12 @@ class SocketHandler(websocket.WebSocketHandler):
 
 class GetPlayers(web.RequestHandler):
     def data_received(self, chunk):
-        self.write(json.dumps(players))
-        self.finish()
+        pass
 
     @web.asynchronous
     def get(self, *args):
         # print(self._dict__)
-        self.write(json.dumps(players))
+        self.write(json.dumps(playersSocket))
         self.finish()
 
     @web.asynchronous
