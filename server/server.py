@@ -1,10 +1,24 @@
-from tornado import websocket, web, ioloop
+from tornado import websocket, web, ioloop, template
 import json
+import os
+from user import Player
 
+player1 = Player('Piotrek','http://192.170.100.12')
+player2 = Player('Pati','http://192.170.100.15')
+
+print(player2)
 cl = []
 
+p1 = {
+  "userName": "piotrek",
+  "websocket": "http:192.170.122"
+    }
+p2= {
+      "userName": "piotrek",
+      "websocket": "http:192.170.122"
+    }
 websockets = []
-players = []
+players = [player1,player2]
 
 
 class IndexHandler(web.RequestHandler):
@@ -12,7 +26,7 @@ class IndexHandler(web.RequestHandler):
         pass
 
     def get(self):
-        self.render("index.html")
+        self.render("templates/index.html")
 
 
 class SocketHandler(websocket.WebSocketHandler):
@@ -39,10 +53,12 @@ class SocketHandler(websocket.WebSocketHandler):
 
 class GetPlayers(web.RequestHandler):
     def data_received(self, chunk):
-        pass
+        self.write(json.dumps(players))
+        self.finish()
 
     @web.asynchronous
     def get(self, *args):
+        # print(self._dict__)
         self.write(json.dumps(players))
         self.finish()
 
@@ -51,11 +67,25 @@ class GetPlayers(web.RequestHandler):
         pass
 
 
+class ShowPlayers(web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
+
+    def get(self):
+
+        # create first user and append to a user list
+       self.render("templates/players.html",players=players)
+
+
 app = web.Application([
     (r'/', IndexHandler),
     (r'/ws', SocketHandler),
-    (r'/api/v1.0/players', GetPlayers),
+    (r'/json/players', GetPlayers),
+    (r'/players', ShowPlayers),
+    (r'/static/(.*)', web.StaticFileHandler, {'path': 'static/'}),
 ])
+
 
 if __name__ == '__main__':
     app.listen(8888)
