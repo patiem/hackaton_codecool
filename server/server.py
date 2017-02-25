@@ -116,22 +116,20 @@ class ShowQuestion(web.RequestHandler):
 
     questionList = [] #  Question.get_questions_by_id(StartQuiz.quizId)
 
-
     def get(self):
         quizId = self.get_argument('user_choice', '')
-        print(quizId)
-        self.questionList = Question.get_questions_by_id(quizId)
-        self.render("templates/question.html", questions=self.questionList)
-
-
+        answerId = self.get_argument('answer', '')
+        print(answerId)
+        if not self.questionList:
+            self.questionList = Question.get_questions_by_id(quizId)
+        self.render("templates/question.html", questions=self.questionList[int(answerId)-1],
+                    max_id=len(self.questionList))
 
     def post(self):
         print(StartQuiz.quizId)
         self.questionList = Question.get_questions_by_id(StartQuiz.quizId)
-
         self.render("templates/question.html")
         pass
-
 
     #     self.quizId = self.get_argument('user_choice', '')
     #     print(self.quizId)

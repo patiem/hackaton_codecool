@@ -48,7 +48,7 @@ class Question:
         ans_list = sql.query(query, [quiz_id])
         list_to_push =[]
         for ans in ans_list:
-            list_to_push.append([ans['id'], ans['img'], ans['question'], ans['a_one'], ans['a_two'], ans['a_three'],
+            list_to_push.append([ans['id'], ans['quiz_id'], ans['img'], ans['question'], ans['a_one'], ans['a_two'], ans['a_three'],
                                  ans['a_good']])
         print(list_to_push)
         return list_to_push

@@ -1,21 +1,37 @@
 {% include header.html %}
+
 <div class="top">
-<h1> Question: {{ questions[0][2] }}</h1>
-    <form class="next" name="next" action="two" method="get">
-    <input type="submit" value="Submit" id="submit">
+<h1> Question: {{ questions[3] }}</h1>
+    {% if questions[0] + 1 < max_id %}
+    <form class="next" name="next" action="" method="get">
+        <div class="hidden">
+            <input type="text" name="answer" id="answer" value="{{ questions[0] + 1 }}">
+            <input type="text" name="user_choice" id="user_choice" value="{{ questions[1] }}">
+        </div>
+        <input type="submit" value="Submit" id="submit">
+    </form>
+    {% else %}
+    <form class="next" name="next" action="end" method="get">
+        
+        <input type="submit" value="Submit" id="submit">
+    </form>
 </div>
+
+
 <hr/>
-<img src={{ questions[0][1] }} width="50%" height="50%"/>
+{% if questions[2] %}
+<img src={{ questions[2] }}  height="300px"/>
 <hr/>
+{% end %}
 <div class="answer" >
     <div class="single" id="green">
-        {{ questions[0][3] }}
+        {{ questions[4] }}
     </div>
     <div class="single" id="red">
-        {{ questions[0][4] }}
+        {{ questions[5] }}
     </div>
     <div class="single" id="yellow">
-        {{ questions[0][5] }}
+        {{ questions[6] }}
     </div>
 </div>
 

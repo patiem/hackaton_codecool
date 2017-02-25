@@ -31,6 +31,10 @@ h1{
     width: 5em;
 }
 
+.hidden {
+    display: none;
+}
+
 #green {
     background-color: greenyellow;
 }
