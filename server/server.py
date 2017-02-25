@@ -3,22 +3,22 @@ import json
 import os
 from user import Player
 
-player1 = Player('Piotrek','http://192.170.100.12')
-player2 = Player('Pati','http://192.170.100.15')
+player1 = Player('Piotrek', 'http://192.170.100.12')
+player2 = Player('Pati', 'http://192.170.100.15')
 
 print(player2)
 cl = []
 playersSocket = []
 p1 = {
-  "userName": "piotrek",
-  "websocket": "http:192.170.122"
-    }
-p2= {
-      "userName": "piotrek",
-      "websocket": "http:192.170.122"
-    }
+    "userName": "piotrek",
+    "websocket": "http:192.170.122"
+}
+p2 = {
+    "userName": "piotrek",
+    "websocket": "http:192.170.122"
+}
 websockets = []
-players = [player1,player2]
+players = [player1, player2]
 
 
 class IndexHandler(web.RequestHandler):
@@ -70,11 +70,28 @@ class ShowPlayers(web.RequestHandler):
     def data_received(self, chunk):
         pass
 
+    def get(self):
+        # create first user and append to a user list
+        self.render("templates/players.html", players=players)
+
+
+class AddQuiz(web.RequestHandler):
+
+    questionAmount = 3
+
+    def data_received(self, chunk):
+        pass
 
     def get(self):
-
         # create first user and append to a user list
-       self.render("templates/players.html",players=players)
+        self.render("templates/add_quiz.html", amount=self.questionAmount)
+
+    def post(self):
+        question_text = self.get_argument('question_text', '')
+        url_img = self.get_argument('url_img', '')
+        a_1 = self.get_argument("a_1", "")
+        a_2 = self.get_argument("a_2", "")
+        print(question_text, url_img, a_1, a_2)
 
 
 app = web.Application([
@@ -83,8 +100,8 @@ app = web.Application([
     (r'/json/players', GetPlayers),
     (r'/players', ShowPlayers),
     (r'/static/(.*)', web.StaticFileHandler, {'path': 'static/'}),
+    (r'/add-quiz', AddQuiz),
 ])
-
 
 if __name__ == '__main__':
     app.listen(8888)

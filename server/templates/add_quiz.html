@@ -1,0 +1,44 @@
+{% include header.html %}
+<h1>Add Quiz</h1>
+<section class="container">
+	<form class="add_question" name="quiz_title">
+        <div class="form-block">
+            <label for="title">Quiz title:</label>
+            <input type="text" name="title" id="title">
+        </div></form>
+    <p></p>
+
+    {% for i in range(amount) %}
+    <form class="add_question" name="question-{{i}}" action="" method="post">
+        <div class="form-block">
+            <label for="question_text">Question {{i}}:</label>
+            <input type="text" name="question_text" id="question_text">
+        </div>
+        <div class="form-block">
+            <label for="url_img">URL to image:</label>
+            <input type="text" name="url_img" id="url_img">
+        </div>
+        <div class="form-block">
+            <label for="a_1">First answer:</label>
+            <input type="text" name="a_1" id="a_1">
+        </div>
+        <div class="form-block">
+            <label for="a_2">Second answer:</label>
+            <input type="text" name="a_2" id="a_2">
+        </div>
+        <div class="form-block">
+            <label for="a_3">Third answer:</label>
+            <input type="text" name="a_3" id="a_3">
+        </div>
+        <div class="form-block">
+            <label for="good">Good answer:</label>
+            <input type="text" name="good" id="good">
+        </div>
+
+        <hr/>
+    </form>
+    <input type="submit" value="Submit" id="submit">
+    <p></p>
+    {% end %}
+</section>
+{% include footer.html %}
