@@ -1,5 +1,11 @@
 {% include header.html %}
 
-<p> YOU ARE WINNER </p>
+<p> YOU ARE WINNER  {{ winner.userName}}</p>
+
+<div class="points">
+    {% for user in points %}
+    <p>  {{ user.userName}} {{ user.points}} </p>
+     {% end %}
+</div>
 
 {% include footer.html %}
