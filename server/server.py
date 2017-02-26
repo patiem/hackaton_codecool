@@ -10,15 +10,6 @@ from datetime import datetime
 
 cl = []
 playersSocket = []
-p1 = {
-    "userName": "piotrek",
-    "beaconId": "1"
-
-}
-p2 = {
-    "userName": "piotrek",
-    "beaconId": "2"
-}
 websockets = []
 
 
@@ -36,7 +27,8 @@ class IndexHandler(web.RequestHandler):
 
 class SocketHandler(websocket.WebSocketHandler):
 
-    listForPoints = [['pati', 'a', datetime.today()], ['pati', 'b', datetime.today()]]  # where!!!!
+    # listForPoints = [['pati', 'a', datetime.today()], ['pati', 'b', datetime.today()]]  # where!!!!
+    listForPoints = []
     players = []
 
     def data_received(self, chunk):
@@ -54,8 +46,8 @@ class SocketHandler(websocket.WebSocketHandler):
 
 
         elif "beaconId" in temp.__dict__.keys():
-            listForPoints.append([temp.username, temp.beaconId, datetime.today()])
-            print(listForPoints)
+            self.listForPoints.append([temp.username, temp.beaconId, datetime.today()])
+            print(self.listForPoints)
 
         playersSocket.append(message)
 
@@ -142,15 +134,18 @@ class ShowQuestion(web.RequestHandler):
         quizId = self.get_argument('user_choice', '')
         answerId = self.get_argument('answer', '')
         if int(answerId) > 1:
-            print(SocketHandler.listForPoints)
-            Question.check_answers(SocketHandler.listForPoints)
+            #Question.check_answers(SocketHandler.listForPoints)
             for user in SocketHandler.listForPoints:
+
                 if Question.if_answer_correct(user[1], quizId, answerId):
+                    print('dupa')
                     user_name = user[1]
                     for user_to_check in SocketHandler.players:
                         if user_to_check.name == user_name:
                             user_to_check.points += 1
                         print(user_to_check.points)
+                else:
+                    print('wert')
 
             SocketHandler.listForPoints = []
 

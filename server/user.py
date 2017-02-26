@@ -16,7 +16,7 @@ class Player():
         self.ready += state
 
     def add_user_to_db(self):
-        query_2 = """INSERT INTO `users` (`name`, `points`)
+        query_2 = """INSERT OR IGNORE INTO `users` (`name`, `points`)
                              VALUES (?, ?)"""
-        params = [self.name, self.points]
+        params = [self.userName, self.points]
         sql.query(query_2, params)
