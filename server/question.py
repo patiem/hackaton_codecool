@@ -51,6 +51,30 @@ class Question:
                                  ans['a_good']])
         return list_to_push
 
+    @staticmethod
+    def check_answers(lista_punktow):
+        query_2 = 'DROP TABLE `answers`;'
+        new_id = sql.query(query_2)
+        query = "CREATE TABLE `answers` (`ID` INTEGER, `username` TEXT NOT NULL,  `socket`, `time` TEXT NOT NULL, PRIMARY KEY(`ID`));"
+        new_id = sql.query(query)
+        for socket in lista_punktow:
+            query_3 = """INSERT INTO `answers` (`username`, `socket`, `time`)
+                                   VALUES (?, ?, ?)"""
+            params = socket
+            new_id = sql.query(query_3, params)
+
+        # query = """SELECT  username, count(username) FROM answers GROUP BY username;"""
+
+
+
+        # query_2 =
+        # new_question = cls(new_id, quiz_id, question, a_one, a_two, a_three, good, img_url)
+        # query_2 = """INSERT INTO QUESTIONS (quiz_id, question, a_one, a_two, a_three, a_good, img)
+        #                      VALUES (?, ?, ?, ?, ?, ?, ?)"""
+
+
+
+
     def __str__(self):
         return '{}-{}-{}'.format(self.question_id, self.question, self.good)
 

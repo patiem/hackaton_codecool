@@ -4,22 +4,24 @@ import os
 from user import Player
 from quiz import Quiz
 from question import Question
+from datetime import datetime
 
-listForPoints = []
 
 
 cl = []
 playersSocket = []
 p1 = {
     "userName": "piotrek",
-    "websocket": "http:192.170.122"
+    "beaconId": "1"
+
 }
 p2 = {
     "userName": "piotrek",
-    "websocket": "http:192.170.122"
+    "beaconId": "2"
 }
 websockets = []
 players = []
+
 
 class DecodeUser(object):
     def __init__(self, j):
@@ -34,6 +36,9 @@ class IndexHandler(web.RequestHandler):
 
 
 class SocketHandler(websocket.WebSocketHandler):
+
+    listForPoints = [['pati', 'a', datetime.today()], ['pati', 'b', datetime.today()]]  # where!!!!
+
     def data_received(self, chunk):
         print("get data chunk from " + self.request.remote_ip)
 
@@ -42,10 +47,13 @@ class SocketHandler(websocket.WebSocketHandler):
 
         temp = DecodeUser(message)
         if "beaconId" not in temp.__dict__.keys():
+
             players.append(Player(temp.username,self.request.remote_ip))
             print(temp.username)
+
+
         elif "beaconId" in temp.__dict__.keys():
-            listForPoints.append([temp.username,temp.beaconId])
+            listForPoints.append([temp.username, temp.beaconId, datetime.today()])
             print(listForPoints)
 
         playersSocket.append(message)
@@ -127,9 +135,17 @@ class ShowQuestion(web.RequestHandler):
 
     questionList = [] #  Question.get_questions_by_id(StartQuiz.quizId)
 
+
     def get(self):
+
         quizId = self.get_argument('user_choice', '')
         answerId = self.get_argument('answer', '')
+        if int(answerId) > 1:
+            print(SocketHandler.listForPoints)
+            Question.check_answers(SocketHandler.listForPoints)
+            
+            SocketHandler.listForPoints = []
+
         if not self.questionList:
             self.questionList = Question.get_questions_by_id(quizId)
 
