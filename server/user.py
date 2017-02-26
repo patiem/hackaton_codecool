@@ -1,3 +1,5 @@
+import sql
+
 class Player():
     """"""
 
@@ -12,3 +14,9 @@ class Player():
 
     def setReady(self, state):
         self.ready += state
+
+    def add_user_to_db(self):
+        query_2 = """INSERT INTO `users` (`name`, `points`)
+                             VALUES (?, ?)"""
+        params = [self.name, self.points]
+        sql.query(query_2, params)

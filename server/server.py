@@ -46,7 +46,9 @@ class SocketHandler(websocket.WebSocketHandler):
         # print("get message from " + self.request.remote_ip + ": " + message)
         temp = DecodeUser(message)
         if "beaconId" not in temp.__dict__.keys():
+            new_player = Player(temp.username, self.request.remote_ip)
             players.append(Player(temp.username, self.request.remote_ip))
+            Player.add_user_to_db(new_player)
         elif "beaconId" in temp.__dict__.keys():
             listForPoints.append([temp.username, temp.beaconId, datetime.today()])
             print(listForPoints)
@@ -138,7 +140,10 @@ class ShowQuestion(web.RequestHandler):
         if int(answerId) > 1:
             print(SocketHandler.listForPoints)
             Question.check_answers(SocketHandler.listForPoints)
-            
+            for user in SocketHandler.listForPoints:
+                if Question.if_answer_correct(user[1], quizId, answerId):
+                    pass
+
             SocketHandler.listForPoints = []
 
         if not self.questionList:
@@ -147,7 +152,7 @@ class ShowQuestion(web.RequestHandler):
         self.render("templates/question.html", questions=self.questionList[int(answerId)-1],
                     max_id=len(self.questionList))
 
-
+    # listForPoints.append([temp.username, temp.beaconId, datetime.today()])
     """def post(self):
         print(StartQuiz.quizId)
         self.questionList = Question.get_questions_by_id(StartQuiz.quizId)
