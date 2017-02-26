@@ -1,8 +1,9 @@
 {% include header.html %}
 <div class="end-page">
-<h1>YOU ARE WINNER  {{ winner.userName}}</h1>
+<h1>YOU ARE WINNER  {{ winner.userName}}!!!!</h1>
 
 	<div class="points">
+	<h3>Ranking:</h3>
 	    {% for user in points %}
 	    <h4>  {{ user.userName}} Your final score  is  {{ user.points}} </h4>
 	     {% end %}

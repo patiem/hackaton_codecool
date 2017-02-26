@@ -18,3 +18,8 @@
         s.background = f ? c2 : c3;
     }, 600)
 })();
+
+function showHide() {
+    document.getElementById("wrap").className = "hideIt";
+ 
+}

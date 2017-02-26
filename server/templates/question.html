@@ -3,6 +3,7 @@
 <div class="top">
 <h1> Question: {{ questions[4] }}</h1>
     <div class="points">
+    <h3>List of players: </h3>
     {% for user in points %}
     <p>     {{ user.userName}} {{ user.points}} </p>
      {% end %}

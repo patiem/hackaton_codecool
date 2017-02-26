@@ -5,8 +5,10 @@
 	<h1>Current Players</h1>
 	{% for player in players %}
 		<article class="player player-{{ player.userName }} col-lg-4 col-md-3 col-sm-6">
-			<img src="http://bootdey.com/img/Content/avatar/avatar6.png" class="image">
-			<h2>{{ player.userName }}</h2>
+				<div class="player-box">
+				<img src="http://bootdey.com/img/Content/avatar/avatar6.png" class="image">
+				<h2>{{ player.userName }}</h2>
+			</div>
 
 		</article>
 	{% end %}
