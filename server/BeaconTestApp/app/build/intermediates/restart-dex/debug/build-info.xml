@@ -5,29 +5,29 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="52141829863871"
+    timestamp="53897458735587"
     token="9163033717557836657"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="131" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="30" />
+        duration="0" />
     <task
         name="verifier"
-        duration="1" />
+        duration="0" />
 
     <artifact
         location="/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/outputs/apk/app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="52141829863871"
+        timestamp="53897458735587"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/outputs/apk/app-debug.apk"

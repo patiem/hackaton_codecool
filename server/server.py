@@ -5,10 +5,9 @@ from user import Player
 from quiz import Quiz
 from question import Question
 
-player1 = Player('Piotrek', 'http://192.170.100.12')
-player2 = Player('Pati', 'http://192.170.100.15')
+listForPoints = []
 
-print(player2)
+
 cl = []
 playersSocket = []
 p1 = {
@@ -20,8 +19,11 @@ p2 = {
     "websocket": "http:192.170.122"
 }
 websockets = []
-players = [player1, player2]
+players = []
 
+class DecodeUser(object):
+    def __init__(self, j):
+        self.__dict__ = json.loads(j)
 
 class IndexHandler(web.RequestHandler):
     def data_received(self, chunk):
@@ -36,7 +38,14 @@ class SocketHandler(websocket.WebSocketHandler):
         print("get data chunk from " + self.request.remote_ip)
 
     def on_message(self, message):
-        print("get message from " + self.request.remote_ip + ": " + message)
+        # print("get message from " + self.request.remote_ip + ": " + message)
+        temp = DecodeUser(message)
+        if "beaconId" not in temp.__dict__.keys():
+            players.append(Player(temp.username,self.request.remote_ip))
+        elif "beaconId" in temp.__dict__.keys():
+            listForPoints.append([temp.username,temp.beaconId])
+            print(listForPoints)
+
         playersSocket.append(message)
 
     def check_origin(self, origin):
