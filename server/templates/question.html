@@ -17,7 +17,11 @@
     </form>
     {% end %}
 </div>
-
+<div class="points">
+    {% for user in points %}
+    <p>     {{ user.userName}} {{ user.points}} </p>
+     {% end %}
+</div>
 
 <hr/>
 {% if questions[2] %}

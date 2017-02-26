@@ -159,7 +159,7 @@ class ShowQuestion(web.RequestHandler):
         if not self.questionList:
             self.questionList = Question.get_questions_by_id(quizId)
 
-        self.render("templates/question.html", questions=self.questionList[int(answerId)-1],
+        self.render("templates/question.html", questions=self.questionList[int(answerId)-1], points=SocketHandler.players,
                     max_id=len(self.questionList))
 
     # listForPoints.append([temp.username, temp.beaconId, datetime.today()])
@@ -174,7 +174,13 @@ class ShowEnd(web.RequestHandler):
 
     def get(self):
 
-        self.render("templates/end.html")
+        winner = SocketHandler.players[0]
+        for player in SocketHandler.players:
+            if player.points > winner.points:
+                winner = player
+
+
+        self.render("templates/end.html", points=SocketHandler.players, winner=winner)
 
     """def post(self):
         print(StartQuiz.quizId)
