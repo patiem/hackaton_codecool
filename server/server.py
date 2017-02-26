@@ -4,6 +4,7 @@ import os
 from user import Player
 from quiz import Quiz
 from question import Question
+from time import datetime
 
 player1 = Player('Piotrek', 'http://192.170.100.12')
 player2 = Player('Pati', 'http://192.170.100.15')
