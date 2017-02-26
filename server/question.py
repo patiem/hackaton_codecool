@@ -43,8 +43,10 @@ class Question:
     @classmethod
     def if_answer_correct(cls, user_choice, quizId, answerId):
         query = "SELECT a_good FROM QUESTIONS WHERE quiz_id=(?) AND `number`=(?)"
-        params = [quizId, answerId]
+        params = [int(quizId), int(answerId) - 1]
         good_answer = sql.query(query, params)[0][0]
+        print(good_answer)
+        user_choice = str(user_choice)
 
         if user_choice == cls.a:
             user_choice = 'a'
@@ -101,5 +103,5 @@ a_three = 'Pikachu'
 good = 'Pikachu'
 img = "http://cartoonbros.com/wp-content/uploads/2016/08/pikachu-6.png"
 print(Question.add_question(3, question, a_one, a_two, a_three, good, img))
-Question.get_questions_by_id(1)"""
-print(Question.if_answer_correct('23453', 1, 1))
+Question.get_questions_by_id(1)
+print(Question.if_answer_correct('11593', 1, 2))"""

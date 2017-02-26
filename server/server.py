@@ -141,11 +141,15 @@ class ShowQuestion(web.RequestHandler):
             for user in SocketHandler.listForPoints:
                 if user[0] not in user_socket_list_that_was_already_check:
                     user_socket_list_that_was_already_check.append(user[0])
+                    print('aaaa')
                     if Question.if_answer_correct(user[1], quizId, answerId):
-                        user_name = user[1]
+
+                        user_name = user[0]
                         for user_to_check in SocketHandler.players:
-                            if user_to_check.name == user_name:
-                                user_to_check.points += 1
+
+                            if user_to_check.userName == user_name:
+                                print('ws')
+                                user_to_check.addPoints(20)
                             print(user_to_check.points)
                     else:
                         print('asdf')
