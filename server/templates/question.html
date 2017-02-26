@@ -2,27 +2,28 @@
 
 <div class="top">
 <h1> Question: {{ questions[4] }}</h1>
+    <div class="points">
+    {% for user in points %}
+    <p>     {{ user.userName}} {{ user.points}} </p>
+     {% end %}
+</div>
     {% if questions[0] + 1 <= max_id %}
     <form class="next" name="next" action="" method="get">
         <div class="hidden">
             <input type="text" name="answer" id="answer" value="{{ questions[0] + 1 }}">
             <input type="text" name="user_choice" id="user_choice" value="{{ questions[2] }}">
         </div>
-        <input type="submit" value="Submit" id="submit">
+        <input type="submit" value="Next question" id="submit">
     </form>
     {% else %}
     <form class="next" name="next" action="end" method="get">
 
-        <input type="submit" value="Submit" id="submit">
+        <input type="submit" value="Next question" id="submit_2">
     </form>
     {% end %}
 </div>
-<div class="points">
-    {% for user in points %}
-    <p>     {{ user.userName}} {{ user.points}} </p>
-     {% end %}
-</div>
 
+<div class="middle">
 <hr/>
 {% if questions[2] %}
 <img src={{ questions[3] }}  height="300px"/>
@@ -30,13 +31,13 @@
 {% end %}
 <div class="answer" >
     <div class="single" id="green">
-        {{ questions[5] }}
+        <p> {{ questions[5] }} </p>
     </div>
     <div class="single" id="red">
-        {{ questions[6] }}
+        <p> {{ questions[6] }} </p>
     </div>
     <div class="single" id="yellow">
-        {{ questions[7] }}
+        <p> {{ questions[7] }} </p>
     </div>
 </div>
-
+</div>
