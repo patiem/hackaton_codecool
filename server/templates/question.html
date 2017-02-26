@@ -2,7 +2,7 @@
 
 <div class="top">
 <h1> Question: {{ questions[3] }}</h1>
-    {% if questions[0] + 1 < max_id %}
+    {% if questions[0] + 1 <= max_id %}
     <form class="next" name="next" action="" method="get">
         <div class="hidden">
             <input type="text" name="answer" id="answer" value="{{ questions[0] + 1 }}">
@@ -12,9 +12,10 @@
     </form>
     {% else %}
     <form class="next" name="next" action="end" method="get">
-        
+
         <input type="submit" value="Submit" id="submit">
     </form>
+    {% end %}
 </div>
 
 

@@ -95,6 +95,7 @@ class AddQuiz(web.RequestHandler):
         a_2 = self.get_argument("a_2", "")
         print(question_text, url_img, a_1, a_2)
 
+
 class StartQuiz(web.RequestHandler):
 
     quizList = Quiz.get_quiz_list()
@@ -118,20 +119,31 @@ class ShowQuestion(web.RequestHandler):
     def get(self):
         quizId = self.get_argument('user_choice', '')
         answerId = self.get_argument('answer', '')
-        print(answerId)
         if not self.questionList:
             self.questionList = Question.get_questions_by_id(quizId)
+
         self.render("templates/question.html", questions=self.questionList[int(answerId)-1],
                     max_id=len(self.questionList))
 
-    def post(self):
+
+    """def post(self):
         print(StartQuiz.quizId)
         self.questionList = Question.get_questions_by_id(StartQuiz.quizId)
         self.render("templates/question.html")
-        pass
+        pass"""
 
-    #     self.quizId = self.get_argument('user_choice', '')
-    #     print(self.quizId)
+
+class ShowEnd(web.RequestHandler):
+
+    def get(self):
+
+        self.render("templates/end.html")
+
+    """def post(self):
+        print(StartQuiz.quizId)
+        self.questionList = Question.get_questions_by_id(StartQuiz.quizId)
+        self.render("templates/question.html")
+        pass"""
 
 
 
@@ -144,7 +156,8 @@ app = web.Application([
     (r'/static/(.*)', web.StaticFileHandler, {'path': 'static/'}),
     (r'/add-quiz', AddQuiz),
     (r'/start', StartQuiz),
-    (r'/one', ShowQuestion)  #, {'path': 'question/'}),
+    (r'/one', ShowQuestion),
+    (r'/end', ShowEnd),
 ])
 
 if __name__ == '__main__':
