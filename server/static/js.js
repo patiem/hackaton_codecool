@@ -18,3 +18,10 @@
         s.background = f ? c2 : c3;
     }, 600)
 })();
+
+function showHide() {
+    document.getElementById("wrap").className = "hideIt";
+    document.getElementById('to_show').classList.remove('hidden');
+    document.getElementsByName('to_show').className = "formu"
+
+}
