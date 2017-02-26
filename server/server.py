@@ -20,7 +20,6 @@ p2 = {
     "beaconId": "2"
 }
 websockets = []
-players = []
 playersSocket = [p1, p2]
 
 class DecodeUser(object):
@@ -38,6 +37,7 @@ class IndexHandler(web.RequestHandler):
 class SocketHandler(websocket.WebSocketHandler):
 
     listForPoints = [['pati', 'a', datetime.today()], ['pati', 'b', datetime.today()]]  # where!!!!
+    players = []
 
     def data_received(self, chunk):
         print("get data chunk from " + self.request.remote_ip)
@@ -47,7 +47,7 @@ class SocketHandler(websocket.WebSocketHandler):
         temp = DecodeUser(message)
         if "beaconId" not in temp.__dict__.keys():
             new_player = Player(temp.username, self.request.remote_ip)
-            players.append(Player(temp.username, self.request.remote_ip))
+            self.players.append(Player(temp.username, self.request.remote_ip))
             Player.add_user_to_db(new_player)
         elif "beaconId" in temp.__dict__.keys():
             listForPoints.append([temp.username, temp.beaconId, datetime.today()])
@@ -90,7 +90,7 @@ class ShowPlayers(web.RequestHandler):
 
     def get(self):
         # create first user and append to a user list
-        self.render("templates/players.html", players=players)
+        self.render("templates/players.html", players=SocketHandler.players)
 
 
 class AddQuiz(web.RequestHandler):
@@ -142,7 +142,11 @@ class ShowQuestion(web.RequestHandler):
             Question.check_answers(SocketHandler.listForPoints)
             for user in SocketHandler.listForPoints:
                 if Question.if_answer_correct(user[1], quizId, answerId):
-                    pass
+                    user_name = user[1]
+                    for user_to_check in SocketHandler.players:
+                        if user_to_check.name == user_name:
+                            user_to_check.points += 1
+                        print(user_to_check.points)
 
             SocketHandler.listForPoints = []
 

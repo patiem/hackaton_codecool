@@ -1,12 +1,12 @@
 {% include header.html %}
 
 <div class="top">
-<h1> Question: {{ questions[3] }}</h1>
+<h1> Question: {{ questions[4] }}</h1>
     {% if questions[0] + 1 <= max_id %}
     <form class="next" name="next" action="" method="get">
         <div class="hidden">
             <input type="text" name="answer" id="answer" value="{{ questions[0] + 1 }}">
-            <input type="text" name="user_choice" id="user_choice" value="{{ questions[1] }}">
+            <input type="text" name="user_choice" id="user_choice" value="{{ questions[2] }}">
         </div>
         <input type="submit" value="Submit" id="submit">
     </form>
@@ -21,18 +21,18 @@
 
 <hr/>
 {% if questions[2] %}
-<img src={{ questions[2] }}  height="300px"/>
+<img src={{ questions[3] }}  height="300px"/>
 <hr/>
 {% end %}
 <div class="answer" >
     <div class="single" id="green">
-        {{ questions[4] }}
-    </div>
-    <div class="single" id="red">
         {{ questions[5] }}
     </div>
-    <div class="single" id="yellow">
+    <div class="single" id="red">
         {{ questions[6] }}
+    </div>
+    <div class="single" id="yellow">
+        {{ questions[7] }}
     </div>
 </div>
 
