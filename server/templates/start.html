@@ -1,0 +1,25 @@
+{% include header.html %}
+<h1>START</h1>
+<h2>Choose your quiz</h2>
+<table>
+{% for item in quizes %}
+    <tr>
+    {% for i in item %}
+        <td>{{i}}</td>
+        {% end %}
+    </tr>
+    {% end %}
+</table>
+    <form class="add_question" name="quiz_id" action="one" method="get">
+        <div class="form-block">
+            <label for="user_choice">Your choice:</label>
+            <input type="text" name="user_choice" id="user_choice">
+        </div>
+        <div class="hidden">
+            <input type="text" name="answer" id="answer" value="1">
+        </div>
+        <input type="submit" value="Submit" id="submit">
+    </form>
+<p></p>
+<p></p>
+{% include footer.html %}

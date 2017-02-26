@@ -2,6 +2,8 @@ from tornado import websocket, web, ioloop, template
 import json
 import os
 from user import Player
+from quiz import Quiz
+from question import Question
 
 player1 = Player('Piotrek', 'http://192.170.100.12')
 player2 = Player('Pati', 'http://192.170.100.15')
@@ -94,6 +96,58 @@ class AddQuiz(web.RequestHandler):
         print(question_text, url_img, a_1, a_2)
 
 
+class StartQuiz(web.RequestHandler):
+
+    quizList = Quiz.get_quiz_list()
+    quizId = None
+
+
+    def data_received(self, chunk):
+        pass
+
+    def get(self):
+        self.render("templates/start.html", quizes=self.quizList)
+
+    def post(self):
+        pass
+
+
+class ShowQuestion(web.RequestHandler):
+
+    questionList = [] #  Question.get_questions_by_id(StartQuiz.quizId)
+
+    def get(self):
+        quizId = self.get_argument('user_choice', '')
+        answerId = self.get_argument('answer', '')
+        if not self.questionList:
+            self.questionList = Question.get_questions_by_id(quizId)
+
+        self.render("templates/question.html", questions=self.questionList[int(answerId)-1],
+                    max_id=len(self.questionList))
+
+
+    """def post(self):
+        print(StartQuiz.quizId)
+        self.questionList = Question.get_questions_by_id(StartQuiz.quizId)
+        self.render("templates/question.html")
+        pass"""
+
+
+class ShowEnd(web.RequestHandler):
+
+    def get(self):
+
+        self.render("templates/end.html")
+
+    """def post(self):
+        print(StartQuiz.quizId)
+        self.questionList = Question.get_questions_by_id(StartQuiz.quizId)
+        self.render("templates/question.html")
+        pass"""
+
+
+
+
 app = web.Application([
     (r'/', IndexHandler),
     (r'/ws', SocketHandler),
@@ -101,6 +155,9 @@ app = web.Application([
     (r'/players', ShowPlayers),
     (r'/static/(.*)', web.StaticFileHandler, {'path': 'static/'}),
     (r'/add-quiz', AddQuiz),
+    (r'/start', StartQuiz),
+    (r'/one', ShowQuestion),
+    (r'/end', ShowEnd),
 ])
 
 if __name__ == '__main__':
