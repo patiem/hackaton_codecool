@@ -20,7 +20,7 @@ p2 = {
     "beaconId": "2"
 }
 websockets = []
-playersSocket = [p1, p2]
+
 
 class DecodeUser(object):
     def __init__(self, j):
@@ -43,12 +43,16 @@ class SocketHandler(websocket.WebSocketHandler):
         print("get data chunk from " + self.request.remote_ip)
 
     def on_message(self, message):
-        # print("get message from " + self.request.remote_ip + ": " + message)
+        print("get message from " + self.request.remote_ip + ": " + message)
+
         temp = DecodeUser(message)
         if "beaconId" not in temp.__dict__.keys():
+
             new_player = Player(temp.username, self.request.remote_ip)
             self.players.append(Player(temp.username, self.request.remote_ip))
             Player.add_user_to_db(new_player)
+
+
         elif "beaconId" in temp.__dict__.keys():
             listForPoints.append([temp.username, temp.beaconId, datetime.today()])
             print(listForPoints)
