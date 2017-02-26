@@ -1,11 +1,11 @@
 {% include header.html %}
+<div class="end-page">
+<h1>YOU ARE WINNER  {{ winner.userName}}</h1>
 
-<p> YOU ARE WINNER  {{ winner.userName}}</p>
-
-<div class="points">
-    {% for user in points %}
-    <p>  {{ user.userName}} {{ user.points}} </p>
-     {% end %}
+	<div class="points">
+	    {% for user in points %}
+	    <h4>  {{ user.userName}} Your final score  is  {{ user.points}} </h4>
+	     {% end %}
+	</div>
 </div>
-
 {% include footer.html %}

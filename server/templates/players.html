@@ -1,19 +1,16 @@
 {% include header.html %}
-<h1>Current Players</h1>
-<section class="container">
+<div class="background-color">
+<section class="container all-players">
 	<div class="row">
+	<h1>Current Players</h1>
 	{% for player in players %}
 		<article class="player player-{{ player.userName }} col-lg-4 col-md-3 col-sm-6">
-
+			<img src="http://bootdey.com/img/Content/avatar/avatar6.png" class="image">
 			<h2>{{ player.userName }}</h2>
 
 		</article>
 	{% end %}
 	</div>
 </section>
+</div>
 {% include footer.html %}
-<script>
-	$(document).ready(function() {
-
-	});
-</script>
