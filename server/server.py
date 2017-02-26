@@ -44,7 +44,6 @@ class SocketHandler(websocket.WebSocketHandler):
             self.players.append(Player(temp.username, self.request.remote_ip))
             Player.add_user_to_db(new_player)
 
-
         elif "beaconId" in temp.__dict__.keys():
             self.listForPoints.append([temp.username, temp.beaconId, datetime.today()])
             print(self.listForPoints)
@@ -134,18 +133,22 @@ class ShowQuestion(web.RequestHandler):
         quizId = self.get_argument('user_choice', '')
         answerId = self.get_argument('answer', '')
         if int(answerId) > 1:
-            #Question.check_answers(SocketHandler.listForPoints)
-            for user in SocketHandler.listForPoints:
 
-                if Question.if_answer_correct(user[1], quizId, answerId):
-                    print('dupa')
-                    user_name = user[1]
-                    for user_to_check in SocketHandler.players:
-                        if user_to_check.name == user_name:
-                            user_to_check.points += 1
-                        print(user_to_check.points)
-                else:
-                    print('wert')
+            print(SocketHandler.listForPoints)
+            user_socket_list_that_was_already_check = []
+            #Question.check_answers(SocketHandler.listForPoints)
+
+            for user in SocketHandler.listForPoints:
+                if user[0] not in user_socket_list_that_was_already_check:
+                    user_socket_list_that_was_already_check.append(user[0])
+                    if Question.if_answer_correct(user[1], quizId, answerId):
+                        user_name = user[1]
+                        for user_to_check in SocketHandler.players:
+                            if user_to_check.name == user_name:
+                                user_to_check.points += 1
+                            print(user_to_check.points)
+                    else:
+                        print('asdf')
 
             SocketHandler.listForPoints = []
 
