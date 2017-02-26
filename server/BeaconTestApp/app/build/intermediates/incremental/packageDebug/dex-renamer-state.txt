@@ -1,0 +1,7 @@
+#Sun Feb 26 00:56:21 CET 2017
+base.0=/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_85744cf3d5daddd0950ac39ff212612c3b682dd8
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_6ba6c3670c7b455925f6a4291bca9bbf413ca22c/classes.dex
+base.1=/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_6ba6c3670c7b455925f6a4291bca9bbf413ca22c
+file.0=/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_85744cf3d5daddd0950ac39ff212612c3b682dd8/classes.dex
