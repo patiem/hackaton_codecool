@@ -38,10 +38,12 @@ class SocketHandler(websocket.WebSocketHandler):
         print("get data chunk from " + self.request.remote_ip)
 
     def on_message(self, message):
-        # print("get message from " + self.request.remote_ip + ": " + message)
+        print("get message from " + self.request.remote_ip + ": " + message)
+
         temp = DecodeUser(message)
         if "beaconId" not in temp.__dict__.keys():
             players.append(Player(temp.username,self.request.remote_ip))
+            print(temp.username)
         elif "beaconId" in temp.__dict__.keys():
             listForPoints.append([temp.username,temp.beaconId])
             print(listForPoints)

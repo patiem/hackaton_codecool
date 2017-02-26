@@ -1,4 +1,4 @@
-#Sun Feb 26 00:56:21 CET 2017
+#Sun Feb 26 03:46:05 CET 2017
 base.0=/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_85744cf3d5daddd0950ac39ff212612c3b682dd8
 renamed.1=classes.dex
 renamed.0=classes2.dex

@@ -29,7 +29,7 @@ public class LoggedActivity extends AppCompatActivity {
     private static final UUID ESTIMOTE_PROXIMITY_UUID = UUID.fromString("B9407F30-F5F8-466E-AFF9-25556B57FE6D");
     private static final Region ALL_ESTIMOTE_BEACONS = new Region("rid", ESTIMOTE_PROXIMITY_UUID, null, null);
     private BeaconManager beaconManager = null;
-
+    private boolean keepListen = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class LoggedActivity extends AppCompatActivity {
                 for(final Beacon one_beacon:beacons) {
                     List <Integer> majorsAnswers = Arrays.asList(11593, 23453);
                     int majorReset = 25152;
-                    if (majorsAnswers.contains(one_beacon.getMajor())) {
+                    if (majorsAnswers.contains(one_beacon.getMajor()) && keepListen) {
 
                         AsyncHttpClient.getDefaultInstance().websocket("http://192.170.20.100:8888/ws", null, new AsyncHttpClient.WebSocketConnectCallback() {
 
@@ -83,10 +83,12 @@ public class LoggedActivity extends AppCompatActivity {
                         });
 
 
-
+                        keepListen = false;
+                        Log.d("Przełaczam na nie słuchanie!!!","DUZEJ DUPIE");
                     }
                     else if(majorReset == one_beacon.getMajor()){
-
+                        keepListen = true;
+                        Log.d("JESTEM W DUPIE","DUZEJ DUPIE i BLOKUJE i resetuje");
                     }
                 }
 

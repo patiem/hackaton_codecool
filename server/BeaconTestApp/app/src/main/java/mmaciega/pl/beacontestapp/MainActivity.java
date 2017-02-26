@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loginToGame(View v) {
-            EditText viewById = (EditText) this.findViewById(R.id.loginEditText);
+        EditText viewById = (EditText) this.findViewById(R.id.loginEditText);
 
-            LOGIN = viewById.getText().toString();
+        LOGIN = viewById.getText().toString();
 
         if (LOGIN != null && !LOGIN.isEmpty()) {
             WEBSOCKET = AsyncHttpClient.getDefaultInstance().websocket("http://192.170.20.100:8888/ws", null, new AsyncHttpClient.WebSocketConnectCallback() {

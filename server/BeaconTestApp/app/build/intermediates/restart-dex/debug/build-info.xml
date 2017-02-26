@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="armeabi-v7a,armeabi"
+    abi="arm64-v8a,armeabi-v7a,armeabi"
     api-level="23"
-    density="xxhdpi"
+    density="xhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="53897458735587"
+    timestamp="1785408200637"
     token="9163033717557836657"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
@@ -22,16 +22,22 @@
         name="verifier"
         duration="0" />
 
-    <artifact
-        location="/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/outputs/apk/app-debug.apk"
-        type="MAIN" />
-
     <build
-        timestamp="53897458735587"
+        timestamp="1041621561375"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
+    <build
+        timestamp="1565032532545"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/home/pgurdek/PycharmProjects/hackaton_codecool/server/BeaconTestApp/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="1785408200637"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>
